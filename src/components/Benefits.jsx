@@ -23,6 +23,33 @@ const benefits = [
   }
 ];
 
+const tiles = [
+  {
+    title: 'Shoulder Rehab',
+    tag: 'shoulder',
+    src:
+      'https://images.unsplash.com/photo-1638894666385-86bcee0dec47?q=80&w=1200&auto=format&fit=crop',
+  },
+  {
+    title: 'Knee Pain',
+    tag: 'knee',
+    src:
+      'https://images.unsplash.com/photo-1580777366187-789e37f1add4?q=80&w=1200&auto=format&fit=crop',
+  },
+  {
+    title: 'Lower Back',
+    tag: 'back',
+    src:
+      'https://images.unsplash.com/photo-1558611848-73f7eb4001a1?q=80&w=1200&auto=format&fit=crop',
+  },
+  {
+    title: 'Post-Op Rehab',
+    tag: 'post-op',
+    src:
+      'https://images.unsplash.com/photo-1599050757221-43c2ee0d5a62?q=80&w=1200&auto=format&fit=crop',
+  },
+];
+
 export default function Benefits() {
   return (
     <section className="py-16 bg-white">
@@ -44,16 +71,20 @@ export default function Benefits() {
             </ul>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            {['shoulder', 'knee', 'back', 'post-op'].map((tag, i) => (
-              <div key={tag} className="rounded-2xl overflow-hidden shadow-lg border border-emerald-100">
-                <img
-                  src={`https://images.unsplash.com/photo-1584467735871-2a9f4bca7f9b?q=80&w=800&auto=format&fit=crop`}
-                  alt="Physiotherapy treatment"
-                  className="h-40 w-full object-cover"
-                />
+            {tiles.map((t) => (
+              <div key={t.tag} className="rounded-2xl overflow-hidden shadow-lg border border-emerald-100 bg-white group">
+                <div className="relative h-40 w-full overflow-hidden">
+                  <img
+                    src={t.src}
+                    alt={`${t.title} illustration`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                </div>
                 <div className="p-4 bg-white">
-                  <p className="text-sm font-medium text-gray-900">{['Shoulder Rehab','Knee Pain','Lower Back','Post-Op Rehab'][i]}</p>
-                  <p className="text-xs text-gray-600">Targeted care for {tag} concerns</p>
+                  <p className="text-sm font-medium text-gray-900">{t.title}</p>
+                  <p className="text-xs text-gray-600">Targeted care for {t.tag} concerns</p>
                 </div>
               </div>
             ))}
